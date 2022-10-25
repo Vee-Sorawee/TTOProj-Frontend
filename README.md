@@ -1,22 +1,12 @@
-# My Personal Web application template for frontend
+# TTO Project For Proving something in my mind 
 
-## Stack
+## Feature
 
-- Vite
-- Vue3
-- Vue Use
-- Vue Router
-- Vue Vuex
-- TailwindCSS
-- Daisy UI
+- Doctor
 
-## Usage
+- Patient
 
-1. create new repository with this template
-2. clone to your local machine
-3. change project name on package.json
-4. `npm install`
-5. `npm run dev`
+- Admin
 
 ---
 
