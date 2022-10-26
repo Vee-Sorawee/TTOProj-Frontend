@@ -3,5 +3,6 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import state from './state'
+import 'nprogress/nprogress.css'
 
 createApp(App).use(router).use(state).mount('#app')
