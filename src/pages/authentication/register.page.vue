@@ -161,12 +161,11 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import RegisterService from '@/service/authService.js';
 import { ref } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import * as yup from 'yup';
 import Nprogress from 'nprogress';
 
 const router = useRouter();
-const route = useRoute();
 const registered = ref({})
 const file = ref('')
 

@@ -1,4 +1,5 @@
 import apiClient from "./apiClient";
+import state from "@/state";
 export default {
     register(user) {
         console.log(user)
@@ -25,5 +26,30 @@ export default {
                 'Content-Type': 'multipart/form-data'
             }
         })
-    }
+    },
+    login(user){
+        return apiClient.post('/auth',{
+            username: user.username,
+            password: user.password
+        }).then((response) => {
+            localStorage.setItem('token',response.data.token)
+            state.dispatch('setStatus',true)
+            this.getUser().then((response) => {
+                state.dispatch('setCurrentUser',response.data)
+                state.dispatch('setRole',response.data.authorities[0])
+            })
+            return Promise.resolve(response.data)           
+        }).catch((error) => {
+            return Promise.reject(error)
+        })          
+    },
+    getUser(){
+        return apiClient.get('/credential')
+    },
+    logout(){
+        localStorage.removeItem('token');
+        state.dispatch('setCurrentUser',null)
+        state.dispatch('setRole',"")
+        state.dispatch('setStatus',false)
+    },
 }
