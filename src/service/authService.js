@@ -1,7 +1,7 @@
 import apiClient from "./apiClient";
 import state from "@/state";
 export default {
-    register(user) {
+    register(user,imgUrls) {
         console.log(user)
         return apiClient.post('/register', {
             "username": user.username,
@@ -11,7 +11,8 @@ export default {
             "lastname": user.lastname,
             "email": user.emailAddress,
             "homeTown": user.hometown,
-            "birthDate": user.birthday
+            "birthDate": user.birthday,
+            "imageUrls" : imgUrls
         }).then((response) => {
             return Promise.resolve(response.data)
         }).catch((error) => {
