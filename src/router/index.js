@@ -5,6 +5,9 @@ import Register from '@/pages/authentication/register.page.vue'
 import Login from '@/pages/authentication/login.page.vue'
 import Profile from '@/pages/user/user.profile.page.vue'
 import Admin from '@/pages/admin/admin.home.page.vue'
+import AdminPatient from '@/pages/admin/admin.patient.vue'
+import AdminDoctor from '@/pages/admin/admin.doctor.vue'
+import AdminUser from '@/pages/admin/admin.user.vue'
 import GetCredential from '@/service/authService'
 
 const checkRole = async (to) => {
@@ -51,7 +54,29 @@ const routes = [
         path: '/admin/:id',
         name: 'Admin',
         component: Admin,
-        props:true
+        props:true,
+        children: [
+            {
+                path:"",
+                name:"AdminHome",
+                component: Profile
+            },
+            {
+                path: 'user',
+                name: 'AdminUser',
+                component: AdminUser
+            },
+            {
+                path: 'patient',
+                name: 'AdminPatient',
+                component: AdminPatient
+            },
+            {
+                path: 'doctor',
+                name: 'AdminDoctor',
+                component: AdminDoctor
+            }
+        ]
     }
 ]
 
