@@ -44,6 +44,7 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import LoginService from '@/service/authService.js';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { useRouter } from 'vue-router';
+import store from '@/state/index.js';
 import * as yup from 'yup';
 import Nprogress from 'nprogress';
 
@@ -62,16 +63,10 @@ const schema = yup.object().shape({
 });
 
 const handleLogin = async (values) => {
-    Nprogress.start();
-    LoginService.login(values).then(() => {
-        Nprogress.done();
-        router.push(
-            { name: 'Profile' }
-        );
-    }).catch(() => {
-        Nprogress.done();
-        alert('Login failed');
-    });
+    await Nprogress.start();
+    await LoginService.login(values);
+    await Nprogress.done();
+    await router.push({ name: 'Profile' });
 }
 
 </script>

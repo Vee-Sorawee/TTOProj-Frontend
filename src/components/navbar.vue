@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-base-100">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-3xl text-primary">TTO Project</a>
+      <router-link to="/Profile" class="btn btn-ghost normal-case text-3xl text-primary">TTO Project</router-link>
     
     </div>
     <div v-if="getStatus">
@@ -9,7 +9,7 @@
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
+              <img :src="imageUrls" />
             </div>
           </label>
           <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -50,6 +50,7 @@ const store = useStore();
 const router = useRouter();
 const getStatus = computed(() => store.getters.getStatus);
 const username = computed(() => store.getters.getCurrentUser == null ? '' : store.getters.getCurrentUser.username);
+const imageUrls = computed(() => store.getters.getCurrentUser == null ? 'https://placeimg.com/80/80/people' : store.getters.getCurrentUser.imageUrls);
 
 const logout = () => {
   Nprogress.start();

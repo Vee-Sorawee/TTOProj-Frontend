@@ -39,5 +39,4 @@ export default createStore({
             context.commit('setStatus', value)
         }
     },
-    modules: {},
 });

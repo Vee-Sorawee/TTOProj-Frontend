@@ -214,7 +214,7 @@ const schema = yup.object().shape({
 
 const handleRegister = (values) => {
     Nprogress.start();
-    RegisterService.register(values)
+    RegisterService.register(values,file.value)
         .then((response) => {
             registered.value = response.data
             Nprogress.done();
