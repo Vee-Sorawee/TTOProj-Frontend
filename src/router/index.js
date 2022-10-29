@@ -14,6 +14,7 @@ import AdminPatientSetDoctor from '@/pages/admin/patient/admin.set.doctor.vue'
 import GetCredential from '@/service/authService'
 import Doctor from '@/pages/doctor/doctor.home.page.vue'
 import DoctorPatient from '@/pages/doctor/doctor.patient.detail.vue'
+import Patient from '@/pages/patient/patient.home.page.vue'
 
 const checkRole = async (to) => {
     let role = ""
@@ -122,6 +123,12 @@ const routes = [
         path: '/doctor/patient/:id',
         name: 'DoctorPatient',
         component: DoctorPatient,
+        props: true
+    },
+    {
+        path: '/patient/:id',
+        name: 'Patient',
+        component: Patient,
         props: true
     }
 ]
