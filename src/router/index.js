@@ -12,18 +12,31 @@ import AdminPatientDetails from '@/pages/admin/patient/admin.patient.detail.vue'
 import AdminPatientSetVaccine from '@/pages/admin/patient/admin.set.vaccine.vue'
 import AdminPatientSetDoctor from '@/pages/admin/patient/admin.set.doctor.vue'
 import GetCredential from '@/service/authService'
+import Doctor from '@/pages/doctor/doctor.home.page.vue'
+import DoctorPatient from '@/pages/doctor/doctor.patient.detail.vue'
 
 const checkRole = async (to) => {
     let role = ""
     let id = 0;
+    let doctor_id = 0;
+    let patient_id = 0;
     if (localStorage.getItem('token') != null) {
         const credential = await GetCredential.getUser();
         role = await credential.data.authorities[0];
         id = await credential.data.id;
+        doctor_id = await credential.data.doctorID;
+        patient_id = await credential.data.patientID;
     }
     if(role === "ROLE_ADMIN"){
         return "/admin/"+id;
     }
+    if(role === "ROLE_DOCTOR"){
+        return "/doctor/" + doctor_id;
+    }
+    if(role === "ROLE_PATIENT"){
+        return "/patient/" + patient_id;
+    }
+    return "/"
 }
 
 const routes = [
@@ -79,7 +92,7 @@ const routes = [
                 name: 'AdminDoctor',
                 component: AdminDoctor
             }
-        ]
+        ],
     },
     {
         path: '/admin/patient/:id',
@@ -98,6 +111,18 @@ const routes = [
                 component: AdminPatientSetDoctor
             }
         ]
+    },
+    {
+        path: '/doctor/:id',
+        name: 'Doctor',
+        component: Doctor,
+        props: true
+    },
+    {
+        path: '/doctor/patient/:id',
+        name: 'DoctorPatient',
+        component: DoctorPatient,
+        props: true
     }
 ]
 
