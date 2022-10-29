@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-    baseURL:"http://localhost:6200",
+    baseURL:"https://tto-project-backend.herokuapp.com",
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        // 'Authorization': localStorage.getItem('token') 
     }
 })
 export default apiClient
